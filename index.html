@@ -1,1 +1,37 @@
-<html></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WebAR Avatar</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body { margin: 0; background: #fff; }
+    model-viewer { width: 100vw; height: 100vh; }
+  </style>
+</head>
+<body>
+
+  <!-- 3D Avatar -->
+  <model-viewer src="avatar.glb"
+    autoplay
+    camera-controls
+    auto-rotate
+    ar
+    ar-modes="scene-viewer webxr quick-look"
+    shadow-intensity="1"
+    alt="My WebAR Avatar">
+  </model-viewer>
+
+  <!-- Audio File -->
+  <audio id="voice" src="audio.wav"></audio>
+
+  <!-- Auto play audio with user interaction (required on mobile) -->
+  <script>
+    const audio = document.getElementById('voice');
+    window.addEventListener('click', () => {
+      audio.play().catch(err => console.log("Autoplay blocked:", err));
+    });
+  </script>
+
+</body>
+</html>
